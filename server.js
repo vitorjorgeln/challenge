@@ -3,25 +3,7 @@ const { json } = require('body-parser')
 const express = require('express')
 const app = express()
 
-app.get('/', async (req, res) => {
-    res.json({msg: "OK"})    
-})
-
-
 app.get('/getrepos', async (req, res) => {
-    try {
-        const {data} = await axios ('https://api.github.com/orgs/takenet/repos')
-        
-        let retorno = data.filter((dt) => dt.language === "C#");
-
-        return res.json(retorno)
-    } catch (error) {
-        return res.json(error)
-    }
-    
-})
-
-app.get('/teste', async (req, res) => {
     try {
         const {data} = await axios ('https://api.github.com/orgs/takenet/repos')
         
@@ -55,3 +37,27 @@ app.get('/teste', async (req, res) => {
 const PORT = process.env.PORT || 666
 
 app.listen(PORT)
+
+
+
+//rota padrao, pra validar se tudo estava funcionando conforme o esperado
+
+/*app.get('/', async (req, res) => {
+    res.json({msg: "OK"})    
+})
+
+
+// primeira rota que criei, onde consegui filtrar os repos pela linguagem
+
+app.get('/teste', async (req, res) => {
+    try {
+        const {data} = await axios ('https://api.github.com/orgs/takenet/repos')
+        
+        let retorno = data.filter((dt) => dt.language === "C#");
+
+        return res.json(retorno)
+    } catch (error) {
+        return res.json(error)
+    }
+    
+})*/
