@@ -25,9 +25,20 @@ app.get('/teste', async (req, res) => {
     try {
         const {data} = await axios ('https://api.github.com/orgs/takenet/repos')
         
-        let retorno = data.filter((dt) => dt.created_at === "2013-10-25T13:04:51Z");
+        let retorno = data.filter((dt) => dt.language === "C#");
 
-        return res.json(retorno)
+        for (let index = 0; index < 4; index++) {
+            retorno.forEach(function(valor, posicao) {
+                let response = {
+                name: [valor.full_name][index],//console.log(valor.full_name, posicao)
+                descricao:  [valor.description][index]
+        }
+        return res.json(response)
+        })
+        }
+        
+
+        
     } catch (error) {
         return res.json(error)
     }
