@@ -10,8 +10,10 @@ app.get('/getrepos', async (req, res) => {
         
         let retorno = data.filter((dt) => dt.language === "C#");// -> Filtrei os repositorios por liguagem. Isso me deu mais facilidade pra trabalhar com o retorno alem de me retornar o valores ja em ordem crescente. 
 
-            //com certeza tinha um jeito melhor de pegar esses retornos, mas infelizmente este foi o jeito que consegui :(
+            //com certeza tinha um jeito melhor de pegar esses retornos, mas infelizmente por limitação tecnica, essa foi a forma que consegui :(
+            // tentei colocar um for dentro do forEach, e até consegui retornar os valores, mas tive dificuldade de montar um objeto parecido com o que eu consegui fazendo essa repeticao manualmente
             retorno.forEach( value=> {
+                
                 let response = {
                 name1: retorno[0].full_name,
                 name2: retorno[1].full_name, 
@@ -24,11 +26,9 @@ app.get('/getrepos', async (req, res) => {
                 descricao4: retorno[3].description,
                 descricao5: retorno[4].description
                 }
-                
-                
                 return res.json(response)
-        })
-
+                
+        }) 
         
     } catch (error) {
         return res.json(error)
@@ -40,29 +40,3 @@ app.get('/getrepos', async (req, res) => {
 const PORT = process.env.PORT || 666
 
 app.listen(PORT)
-
-
-
-// ********** testes ****************
-
-//rota padrao, pra validar se tudo estava funcionando conforme o esperado
-
-/*app.get('/', async (req, res) => {
-    res.json({msg: "OK"})    
-})
-
-
-// primeira rota que criei, onde consegui filtrar os repos pela linguagem
-
-app.get('/teste', async (req, res) => {
-    try {
-        const {data} = await axios ('https://api.github.com/orgs/takenet/repos')
-        
-        let retorno = data.filter((dt) => dt.language === "C#");
-
-        return res.json(retorno)
-    } catch (error) {
-        return res.json(error)
-    }
-    
-})*/

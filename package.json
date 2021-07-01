@@ -1,7 +1,7 @@
 {
   "name": "cs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Challanges",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js"
