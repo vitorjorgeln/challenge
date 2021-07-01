@@ -27,16 +27,15 @@ app.get('/teste', async (req, res) => {
         
         let retorno = data.filter((dt) => dt.language === "C#");
 
-        for (let index = 0; index < 4; index++) {
-            retorno.forEach(function(valor, posicao) {
+            retorno.forEach( value=> {
                 let response = {
-                name: [valor.full_name][index],//console.log(valor.full_name, posicao)
-                descricao:  [valor.description][index]
-        }
-        return res.json(response)
+                name: [retorno[0].full_name, retorno[1].full_name, retorno[2].full_name, retorno[3].full_name, retorno[4].full_name],//console.log(valor.full_name, posicao)
+                descricao: [retorno[0].description, retorno[1].description, retorno[2].description, retorno[3].description, retorno[4].description] 
+                }             
+                
+
+                return res.json(response)
         })
-        }
-        
 
         
     } catch (error) {
