@@ -20,4 +20,6 @@ app.get('/getrepos', async (req, res) => {
     
 })
 
-app.listen('666')
+const PORT = process.env.PORT || 666
+
+app.listen(PORT)
